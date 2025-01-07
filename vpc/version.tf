@@ -8,16 +8,16 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
-  access_key = ""
-  secret_key = ""
-
+  region     = "us-east-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
-resource "aws_vpc" "newvpc" {
-  cidr_block = "20.0.0.0/16"
+resource "aws_instance" "web" {
+  ami           = "ami-0e2c8caa4b6378d8c"
+  instance_type = "t2.micro"
 
   tags = {
-    Name = "NewVPC"
+    Name = "ec2machine"
   }
 }
